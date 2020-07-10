@@ -1,0 +1,79 @@
+#include <iostream>
+#include <stdio.h>
+
+using namespace std;
+
+class Calc {
+	
+public:
+
+	double number=0;
+	string q;
+	void Inputer() {
+	
+		cin >> q;
+
+	};
+
+	void Rework() {							// Функция убирает лишние символы, а также выполняет функцию модуля
+
+		int i = 0;
+
+		while (q[i]) {
+
+			if ((q[i] <= 57) && (q[i] >= 48)) {
+
+				number = number * 10 + atoi(string({ q[i] }).c_str()); // Если число входит в промежуток от 0 до 9 то оно записывается в финальное число
+
+			}
+
+			if ((q[i] == 44) || (q[i] == 46)) break;
+
+			i++;
+		}
+		
+		if ((q[i] == 44)||(q[i]==46)) {
+
+			i++;
+
+			int j = 1;
+
+			while (q[i]) {
+
+				if ((q[i] <= 57) && (q[i] >= 48)) {
+
+					number = number + pow(0.1, j) * atoi(string({ q[i] }).c_str());
+					i++, j++;
+				}
+				else {
+					i++;
+				}
+			}
+
+		}
+
+	}
+
+
+	void Outputer() {
+	
+		cout << fixed;
+
+		cout.precision(8);
+
+		cout << number;
+
+	};
+};
+
+
+int main() {
+
+	Calc a;
+	
+	a.Inputer();
+	a.Rework();
+	a.Outputer();
+
+	return 0;
+}
